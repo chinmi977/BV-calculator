@@ -62,6 +62,8 @@
   	for (const td of list){
   		td.addEventListener("click", App.onclickTd.bind(App, td));
 	  }
+    const yourInput = document.querySelector("#inputbv");
+    yourInput.addEventListener("keyup", App.onInputBv.bind(App, yourInput));
   };
   App.onclickTd = function(td){
   	try{
@@ -84,6 +86,15 @@
     catch(e){
     }
   };
+  App.onInputBv = function(inputBv){
+    let inputString = document.getElementById("inputbv").value;
+    if( !isNaN( Number(inputString)) && lastTd != null) {
+      let multi = parseFloat( lastTd.innerText);
+      let inputFloat = parseFloat( inputString);
+      let caliculated = multi * inputFloat;
+      document.getElementById("caliculated").value = Math.ceil( caliculated);
+    }
+  }
 
   window.addEventListener("load", App.init.bind(App));
   </script>
